@@ -1,0 +1,80 @@
+<MenuScreen>:
+    GridLayout:
+        cols: 2
+        Button:
+            text: 'Note'
+            on_press: root.manager.current = 'add_note'
+        Button:
+            text: 'Set directory'
+            on_press: root.manager.current = 'set_dir'
+
+<Add_new_note>:
+    GridLayout:
+        cols: 2
+        Label:
+            text: 'Name'
+        TextInput:
+            id: name_input           
+        Label:
+            text: 'Note'
+        TextInput:
+            id: note_input
+        Label:
+            text: 'Extension'
+        TextInput: 
+            id: extension_input
+            text: 'md'
+            multiline: False
+        Label:
+            text: 'Keys (comma delimiter)'
+        TextInput:
+            id: keys_input
+        Label:
+            text: 'DOI'
+        TextInput:
+            id: doi_input
+        Label:
+            text: 'Autolink'
+        CheckBox:
+            id: autolink_chk_input
+        Label:
+            text: 'Article'
+        CheckBox:
+            id: article_chk_input
+        Button:
+            text: 'TOC'
+            on_press: app.make_toc()
+        Button:
+            text: "Clear"
+            id: clear_chk_input
+            on_press: keys_input.text = ""
+            on_press: note_input.text = ""
+            on_press: name_input.text = ""
+            on_press: doi_input.text = ""
+            on_press: article_chk_input.active = False
+            on_press: autolink_chk_input.active = False
+            on_press: clear_chk_input.active = False
+        Button:
+            text: 'Back to menu'
+            on_press: root.manager.current = 'menu'
+        Button:
+            text: 'Save'
+            on_press: app.save_dc(name_input.text, note_input.text, extension_input.text, keys_input.text, autolink_chk_input.active, article_chk_input.active, doi_input.text)
+
+<Set_new_dir>:
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: 'Set directory'
+        TextInput:
+            text: 'c:/Users/Name/.../'
+            id: dir_input
+            multiline: False
+        Button:
+            text: 'Save'
+            on_press: app.save_dir(dir_input.text)
+            on_press: root.manager.current = 'menu'
+        Button:
+            text: 'Back to menu'
+            on_press: root.manager.current = 'menu'
