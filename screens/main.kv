@@ -37,10 +37,6 @@
             text: 'Autolink'
         CheckBox:
             id: autolink_chk_input
-        Label:
-            text: 'Article'
-        CheckBox:
-            id: article_chk_input
         Button:
             text: 'TOC'
             on_press: app.make_toc()
@@ -51,7 +47,6 @@
             on_press: note_input.text = ""
             on_press: name_input.text = ""
             on_press: doi_input.text = ""
-            on_press: article_chk_input.active = False
             on_press: autolink_chk_input.active = False
             on_press: clear_chk_input.active = False
         Button:
@@ -59,7 +54,7 @@
             on_press: root.manager.current = 'menu'
         Button:
             text: 'Save'
-            on_press: app.save_dc(name_input.text, note_input.text, extension_input.text, keys_input.text, autolink_chk_input.active, article_chk_input.active, doi_input.text)
+            on_press: app.save_dc(name_input.text, note_input.text, extension_input.text, keys_input.text, autolink_chk_input.active, doi_input.text)
 
 <Set_new_dir>:
 

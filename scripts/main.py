@@ -6,7 +6,9 @@ from getid import getid
 from getdir import getdir
 from doi_to_bt import doi_to_bt
 
-import os
+import os, sys
+
+sys.path.append(os.path.abspath('..'))
 
 Builder.load_file('screens/main.kv')
 
@@ -60,14 +62,14 @@ class kvApp(App):
 
         contents.close()
 
-    def save_dc(self, name, note, extension, keys, autolink, article, doi):
+    def save_dc(self, name, note, extension, keys, autolink, doi):
 
         id = getid()
         name = name.strip()
         extension = extension.strip()
         keys = keys.strip()
 
-        if article:
+        if doi:
 
             name = "[A] " + name
             dc = open(getdir() + name + "." + extension, 'w')
