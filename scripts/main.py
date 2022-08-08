@@ -38,7 +38,12 @@ class kvApp(App):
     def save_dir(self, dir):
 
         makedir = open('dir.txt','w')
-        makedir.write(dir)
+
+        dir = dir.strip()
+        if dir[-1] == "/":
+            makedir.write(dir)
+        else:
+            makedir.write(dir + "/")
         makedir.close()
 
     def make_toc(self):
@@ -62,7 +67,7 @@ class kvApp(App):
 
         contents.close()
 
-    def save_dc(self, name, note, extension, keys, autolink, doi):
+    def save_dc(self, name, note, extension, keys, doi, autolink):
 
         id = getid()
         name = name.strip()
@@ -74,8 +79,8 @@ class kvApp(App):
             name = "[A] " + name
             dc = open(getdir() + name + "." + extension, 'w')
             dc.write("#### " + name + '\n' + id)
-            if doi.strip() != "":
-                dc.write('\n\n' + "##### " + doi_to_bt(doi))
+            #if doi.strip() != "":
+            dc.write('\n\n' + "##### " + doi_to_bt(doi))
             dc.write('\n\n' + "##### " + '\n\n' + note + '\n\n' + "##### Links" + '\n')
 
         else:
